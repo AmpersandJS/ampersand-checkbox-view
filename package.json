@@ -1,0 +1,25 @@
+{
+  "name": "ampersand-checkbox-view",
+  "description": "A view module for intelligently rendering and validating checkbox input. Works well with ampersand-form-view.",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "bugs": {
+    "url": "https://github.com/ampersandjs/ampersand-checkbox-view/issues"
+  },
+  "dependencies": {
+    "ampersand-dom": "~0.1.1",
+    "domify": "~1.2.2"
+  },
+  "homepage": "https://github.com/ampersandjs/ampersand-checkbox-view",
+  "keywords": [
+    "forms",
+    "ampersand",
+    "browser"
+  ],
+  "license": "MIT",
+  "main": "ampersand-checkbox-view.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ampersandjs/ampersand-checkbox-view"
+  }
+}
