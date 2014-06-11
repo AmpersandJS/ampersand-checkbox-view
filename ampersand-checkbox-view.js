@@ -14,7 +14,7 @@ var template = [
 ].join('');
 
 
-function BooleanInputView(opts) {
+function CheckboxView(opts) {
     if (!opts.name) throw new Error('must pass in a name');
 
     // settings
@@ -22,7 +22,7 @@ function BooleanInputView(opts) {
     this.value = opts.value || '';
     this.el = opts.el;
     this.template = opts.template || template;
-    this.label = opts.label || options.name;
+    this.label = opts.label || opts.name;
     this.required = (typeof opts.required === 'boolean') ? opts.required : false;
     this.validClass = opts.validClass || 'input-valid';
     this.invalidClass = opts.invalidClass || 'input-invalid';
@@ -48,14 +48,14 @@ function BooleanInputView(opts) {
 }
 
 // remove and destroy element
-BooleanInputView.prototype.remove = function () {
+CheckboxView.prototype.remove = function () {
     this.input.removeEventListener('change', this.handleInputEvent, false);
     var parent = this.el.parentNode;
     if (parent) parent.removeChild(this.el);
 };
 
 // very `manual` render to avoid dependencies
-BooleanInputView.prototype.render = function () {
+CheckboxView.prototype.render = function () {
     // only allow this to be called once
     if (this.rendered) return;
     var newDom = domify(this.template);
@@ -74,7 +74,7 @@ BooleanInputView.prototype.render = function () {
 };
 
 // handle input events and show appropriate errors
-BooleanInputView.prototype.handleInputEvent = function () {
+CheckboxView.prototype.handleInputEvent = function () {
     // track whether user has edited directly
     if (document.activeElement === this.input) this.directlyEdited = true;
     this.value = this.input.checked;
@@ -86,7 +86,7 @@ BooleanInputView.prototype.handleInputEvent = function () {
 
 // set the error message if exists
 // hides the message container entirely otherwise
-BooleanInputView.prototype.setMessage = function (message) {
+CheckboxView.prototype.setMessage = function (message) {
     var input = this.input;
     this.message = message;
     // there is an error
@@ -104,23 +104,23 @@ BooleanInputView.prototype.setMessage = function (message) {
     }
 };
 
-BooleanInputView.prototype.setValue = function (value) {
+CheckboxView.prototype.setValue = function (value) {
     this.input.checked = !!value;
     this.handleInputEvent();
 };
 
-BooleanInputView.prototype.beforeSubmit = function () {
+CheckboxView.prototype.beforeSubmit = function () {
     this.hasBeenValid = true;
     this.valid = this.runTests();
     this.handleInputEvent();
 };
 
-BooleanInputView.prototype.isValid = function () {
+CheckboxView.prototype.isValid = function () {
     return !!(!this.required || this.input.checked);
 };
 
 // runs tests and sets first failure as message
-BooleanInputView.prototype.runTests = function () {
+CheckboxView.prototype.runTests = function () {
     var valid = this.isValid();
     if (valid) {
         this.hasBeenValid = true;
@@ -130,4 +130,4 @@ BooleanInputView.prototype.runTests = function () {
 };
 
 
-module.exports = BooleanInputView;
+module.exports = CheckboxView;
