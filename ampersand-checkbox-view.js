@@ -15,11 +15,11 @@ var template = [
 
 
 function CheckboxView(opts) {
-    if (!opts.name) throw new Error('must pass in a name');
+    if (!opts || !opts.name) throw new Error('must pass in a name');
 
     // settings
     this.name = opts.name;
-    this.value = opts.value || '';
+    this.value = (opts.value === true) || false;
     this.el = opts.el;
     this.template = opts.template || template;
     this.label = opts.label || opts.name;
@@ -40,11 +40,7 @@ function CheckboxView(opts) {
 
     if (opts.value) this.setValue(true);
 
-    if (this.isValid()) {
-        this.hasBeenValid = true;
-    }
-    // always start true with checkboxes
-    this.valid = true;
+    this.test();
 }
 
 // remove and destroy element
@@ -67,8 +63,8 @@ CheckboxView.prototype.render = function () {
     this.messageContainer = this.el.querySelector('[role=message-container]');
     this.messageEl = this.el.querySelector('[role=message-text]');
     this.setMessage(this.message);
-    if (this.required) this.input.required = true;
-    this.input.value = !!this.value;
+    this.input.checked = !!this.value;
+    this.input.name = this.name;
     this.labelEl.textContent = this.label;
     this.rendered = true;
 };
@@ -78,9 +74,7 @@ CheckboxView.prototype.handleInputEvent = function () {
     // track whether user has edited directly
     if (document.activeElement === this.input) this.directlyEdited = true;
     this.value = this.input.checked;
-    if (this.message || this.hasBeenValid) {
-        this.valid = this.runTests();
-    }
+    this.test();
     if (this.parent) this.parent.update(this);
 };
 
@@ -90,14 +84,14 @@ CheckboxView.prototype.setMessage = function (message) {
     var input = this.input;
     this.message = message;
     // there is an error
-    if (message && this.hasBeenValid) {
+    if (message && this.shouldValidate) {
         this.messageContainer.style.display = 'block';
         this.messageEl.textContent = message;
         dom.addClass(input, this.invalidClass);
         dom.removeClass(input, this.validClass);
     } else {
         this.messageContainer.style.display = 'none';
-        if (this.hasBeenValid && this.editedDirectly) {
+        if (this.shouldValidate && this.editedDirectly) {
             dom.addClass(input, this.validClass);
             dom.removeClass(input, this.invalidClass);
         }
@@ -110,22 +104,19 @@ CheckboxView.prototype.setValue = function (value) {
 };
 
 CheckboxView.prototype.beforeSubmit = function () {
-    this.hasBeenValid = true;
-    this.valid = this.runTests();
+    this.shouldValidate = true;
     this.handleInputEvent();
 };
 
-CheckboxView.prototype.isValid = function () {
-    return !!(!this.required || this.input.checked);
-};
-
-// runs tests and sets first failure as message
-CheckboxView.prototype.runTests = function () {
-    var valid = this.isValid();
-    if (valid) {
-        this.hasBeenValid = true;
+CheckboxView.prototype.test = function () {
+    var valid = !this.required || this.value;
+    if (valid) this.shouldValidate = true;
+    this.valid = valid;
+    if (this.shouldValidate && !valid) {
+        this.setMessage(this.requiredMessage);
+    } else {
+        this.setMessage('');
     }
-    this.setMessage(valid ? '' : this.requiredMessage);
     return valid;
 };
 

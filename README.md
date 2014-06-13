@@ -61,6 +61,10 @@ document.querySelector('form').appendChild(field.el);
 
 ```
 
+## browser support 
+
+[![testling badge](https://ci.testling.com/AmpersandJS/ampersand-checkbox-view.png)](https://ci.testling.com/AmpersandJS/ampersand-checkbox-view)
+
 ## credits
 
 Created by [@HenrikJoreteg](http://twitter.com/henrikjoreteg).
