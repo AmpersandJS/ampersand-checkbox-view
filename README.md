@@ -11,6 +11,9 @@ It does the following:
 
 Depdent on two micro-libs, so works well with ampersand apps, backbone apps or anything else, really.
 
+<!-- starthide -->
+Part of the [Ampersand.js toolkit](http://ampersandjs.com) for building clientside applications.
+<!-- endhide -->
 
 ## install
 
