@@ -3,12 +3,12 @@ var dom = require('ampersand-dom');
 
 
 // can be overwritten by anything with:
-// <input>, <label> and <the same `role` attributes
+// <input>, <label> and the same `data-hook` attributes
 var template = [
     '<label class="checkbox">',
-        '<input type="checkbox"><span role="label"></span>',
-        '<div role="message-container" class="message message-below message-error">',
-            '<p role="message-text"></p>',
+        '<input type="checkbox"><span data-hook="label"></span>',
+        '<div data-hook="message-container" class="message message-below message-error">',
+            '<p data-hook="message-text"></p>',
         '</div>',
     '</label>'
 ].join('');
@@ -59,9 +59,9 @@ CheckboxView.prototype.render = function () {
     if (parent) parent.replaceChild(newDom, this.el);
     this.el = newDom;
     this.input = this.el.querySelector('input');
-    this.labelEl = this.el.querySelector('[role=label]');
-    this.messageContainer = this.el.querySelector('[role=message-container]');
-    this.messageEl = this.el.querySelector('[role=message-text]');
+    this.labelEl = this.el.querySelector('[data-hook~=label]');
+    this.messageContainer = this.el.querySelector('[data-hook~=message-container]');
+    this.messageEl = this.el.querySelector('[data-hook~=message-text]');
     this.setMessage(this.message);
     this.input.checked = !!this.value;
     this.input.name = this.name;

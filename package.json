@@ -7,7 +7,7 @@
     "url": "https://github.com/ampersandjs/ampersand-checkbox-view/issues"
   },
   "dependencies": {
-    "ampersand-dom": "^0.1.2",
+    "ampersand-dom": "^1.2.1",
     "domify": "~1.2.2"
   },
   "devDependencies": {
