@@ -48,8 +48,6 @@ var field = new CheckboxView({
     required: true, // true by default
     // class to set on input when input is valid
     validClass: 'input-valid', // <- that's the default
-    // type value to use for the input tag's type value
-    type: 'text',
     // class to set on input when input is valid
     invalidClass: 'input-invalid', // <- that's the default
     // Message to use if error is that it's required
