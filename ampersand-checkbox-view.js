@@ -66,7 +66,7 @@ CheckboxView.prototype.render = function () {
     this.setMessage(this.message);
     this.input.checked = !!this.value;
     this.input.name = this.name;
-    this.labelEl.textContent = this.label;
+    this.labelEl.innerHTML = this.label;
     this.rendered = true;
 };
 
