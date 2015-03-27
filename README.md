@@ -1,5 +1,9 @@
 # ampersand-checkbox-view
 
+Lead Maintainer: [Michael Garvin](https://github.com/wraithgar)
+
+# overview
+
 A view module for intelligently rendering and validating checkbox input. Works well with [ampersand-form-view](ampersandjs/ampersand-form-view).
 
 It does the following:
