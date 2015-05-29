@@ -42,7 +42,11 @@
   },
   "scripts": {
     "test": "browserify test/* | tape-run | tap-spec",
-    "start": "run-browser test/*"
+    "start": "run-browser test/*",
+    "preversion": "git checkout master && git pull && npm ls",
+    "publish-patch": "npm version patch && git push origin master --tags && npm publish",
+    "publish-minor": "npm version minor && git push origin master --tags && npm publish",
+    "publish-major": "npm version major && git push origin master --tags && npm publish"
   },
   "testling": {
     "files": "test/*.js",
