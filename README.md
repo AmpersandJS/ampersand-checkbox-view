@@ -78,7 +78,7 @@ Commonly accessed properties listed below.  See the `initialize()` function for 
 
 ### functions
 - `new CheckboxView()` - constructor
-    - see the [example](#example) for contructor options
+    - see the [example](#example) for constructor options
 - `clear()`
     - sugar for `view.setValue(false);`
 - `reset()`
