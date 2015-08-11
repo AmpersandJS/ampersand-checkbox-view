@@ -14,8 +14,7 @@
   "dependencies": {
     "ampersand-dom": "^1.4.0",
     "ampersand-version": "^1.0.2",
-    "ampersand-view": "^8.0.0",
-    "domify": "~1.3.3"
+    "ampersand-view": "^8.0.0"
   },
   "devDependencies": {
     "ampersand-view-conventions": ">=1.1.6",
