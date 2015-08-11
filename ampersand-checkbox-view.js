@@ -10,7 +10,7 @@ function defaultTemplate() {
         '<p data-hook="message-text"></p>',
         '</div>',
         '</label>'
-    ].join('')
+    ].join('');
 }
 
 module.exports = View.extend({
