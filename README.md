@@ -92,6 +92,10 @@ Commonly accessed properties listed below.  See the `initialize()` function for 
 
 ## changelog
 
+- 4.1.0
+    - Remove `domify` and using ampersand-view `renderWithTemplate`
+- 4.0.0
+    - Bump to ampersand-view 8.x
 - 3.0.0
     - Extend ampersand-view.  Add support `autoRender`, `clear`, `reset`
 
