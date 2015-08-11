@@ -2,16 +2,19 @@
 var View = require('ampersand-view');
 var dom = require('ampersand-dom');
 
+function defaultTemplate() {
+    return [
+        '<label class="checkbox">',
+        '<input type="checkbox"><span data-hook="label"></span>',
+        '<div data-hook="message-container" class="message message-below message-error">',
+        '<p data-hook="message-text"></p>',
+        '</div>',
+        '</label>'
+    ].join('')
+}
 
 module.exports = View.extend({
-    template : [
-        '<label class="checkbox">',
-            '<input type="checkbox"><span data-hook="label"></span>',
-            '<div data-hook="message-container" class="message message-below message-error">',
-                '<p data-hook="message-text"></p>',
-            '</div>',
-        '</label>'
-        ].join(''),
+    template : defaultTemplate,
 
     initialize: function(opts) {
         if (!opts || !opts.name) throw new Error('must pass in a name');
