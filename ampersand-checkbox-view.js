@@ -1,21 +1,18 @@
 /*$AMPERSAND_VERSION*/
 var View = require('ampersand-view');
-var domify = require('domify');
 var dom = require('ampersand-dom');
 
 
-// can be overwritten by anything with:
-// <input>, <label> and the same `data-hook` attributes
-var template = [
-    '<label class="checkbox">',
-        '<input type="checkbox"><span data-hook="label"></span>',
-        '<div data-hook="message-container" class="message message-below message-error">',
-            '<p data-hook="message-text"></p>',
-        '</div>',
-    '</label>'
-].join('');
-
 module.exports = View.extend({
+    template : [
+        '<label class="checkbox">',
+            '<input type="checkbox"><span data-hook="label"></span>',
+            '<div data-hook="message-container" class="message message-below message-error">',
+                '<p data-hook="message-text"></p>',
+            '</div>',
+        '</label>'
+        ].join(''),
+
     initialize: function(opts) {
         if (!opts || !opts.name) throw new Error('must pass in a name');
 
@@ -31,7 +28,7 @@ module.exports = View.extend({
         this.requiredMessage = opts.requiredMessage || 'This box must be checked.';
         this.parent = opts.parent || this.parent;
         this.autoRender = opts.autoRender;
-        this.template = opts.template || template;
+        if (opts.template) this.template = opts.template;
         this.beforeSubmit = opts.beforeSubmit || this.beforeSubmit;
 
         this.setValue(this.value);
@@ -47,12 +44,7 @@ module.exports = View.extend({
         View.prototype.remove.call(this);
     },
     render: function () {
-        // only allow this to be called once
-        if (this.rendered) return;
-        var newDom = domify(this.template);
-        var parent = this.el && this.el.parentNode;
-        if (parent) parent.replaceChild(newDom, this.el);
-        this.el = newDom;
+        this.renderWithTemplate(this);
         this.input = this.el.querySelector('input');
         this.labelEl = this.el.querySelector('[data-hook~=label]');
         this.messageContainer = this.el.querySelector('[data-hook~=message-container]');
