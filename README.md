@@ -86,10 +86,6 @@ Commonly accessed properties listed below.  See the `initialize()` function for 
 - `setValue([boolean])`
     - sets the value of the view. the view will **always** maintain a value of type `boolean`.
 
-## browser support
-
-[![testling badge](https://ci.testling.com/AmpersandJS/ampersand-checkbox-view.png)](https://ci.testling.com/AmpersandJS/ampersand-checkbox-view)
-
 ## changelog
 
 - 4.1.0
