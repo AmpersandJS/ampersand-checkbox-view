@@ -87,7 +87,8 @@ Commonly accessed properties listed below.  See the `initialize()` function for 
     - sets the value of the view. the view will **always** maintain a value of type `boolean`.
 
 ## changelog
-
+- 5.0.0
+  - Upgrade to &-view 9.x
 - 4.1.0
     - Remove `domify` and using ampersand-view `renderWithTemplate`
 - 4.0.0
@@ -102,4 +103,3 @@ Created by [@HenrikJoreteg](http://twitter.com/henrikjoreteg).
 ## license
 
 MIT
-
