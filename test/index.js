@@ -2,10 +2,6 @@ var test = require('tape');
 var viewConventions = require('ampersand-view-conventions');
 var CheckboxView = require('../ampersand-checkbox-view');
 
-// silly phantomjs doesn't have this
-if (!Function.prototype.bind) Function.prototype.bind = require('function-bind');
-
-
 viewConventions.view(test, CheckboxView, {name: 'hi'});
 viewConventions.formField(test, CheckboxView, {name: 'hi'}, true);
 
