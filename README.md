@@ -50,6 +50,8 @@ var field = new CheckboxView({
     el: document.getElementByID('field'),
     // whether or not this field is required
     required: true, // true by default
+    // whether or not to disable this field
+    disabled: false, //false by default
     // class to set on input when input is valid
     validClass: 'input-valid', // <- that's the default
     // class to set on input when input is valid
