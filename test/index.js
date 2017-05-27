@@ -104,6 +104,11 @@ test('basics', function (t) {
     t.strictEqual(view.disabled, true, 'disabled should be true');
     t.strictEqual(view.input.disabled, true, 'disabled should be true');
 
+    view.disabled = false;
+
+    t.strictEqual(view.disabled, false, 'disabled should now be false');
+    t.strictEqual(view.input.disabled, false, 'disabled should now be false');
+
     //test throw when lacking name
     t.throws(function() {
         view = new CheckboxView({
