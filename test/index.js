@@ -103,4 +103,12 @@ test('basics', function (t) {
 
     t.strictEqual(view.disabled, true, 'disabled should be true');
     t.strictEqual(view.input.disabled, true, 'disabled should be true');
+
+    //test throw when lacking name
+    t.throws(function() {
+        view = new CheckboxView({
+            required: true,
+            autoRender: true
+        });
+    }, 'should throw when there is no `name`');
 });
