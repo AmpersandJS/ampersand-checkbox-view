@@ -21,11 +21,8 @@ module.exports = View.extend({
 
         // settings
         this.el = opts.el;
-        this.name = opts.name;
         this.startingValue = !!opts.value;
-        this.value = this.startingValue;
         this.label = opts.label || opts.name;
-        this.required = (typeof opts.required === 'boolean') ? opts.required : false;
         this.validClass = opts.validClass || 'input-valid';
         this.invalidClass = opts.invalidClass || 'input-invalid';
         this.requiredMessage = opts.requiredMessage || 'This box must be checked.';
@@ -38,6 +35,21 @@ module.exports = View.extend({
     },
 
     props: {
+        name: {
+            type: 'string',
+            required: true
+        },
+        value: {
+            type: 'boolean',
+            default: false
+        },
+        label: {
+            type: 'string'
+        },
+        required: {
+            type: 'boolean',
+            default: false
+        },
         disabled: {
             type: 'boolean',
             default: false
@@ -49,6 +61,20 @@ module.exports = View.extend({
             type: 'booleanAttribute',
             selector: 'input',
             name: 'disabled'
+        },
+        value: {
+            type: 'booleanAttribute',
+            selector: 'input',
+            name: 'checked'
+        },
+        name: {
+            type: 'attribute',
+            selector: 'input',
+            name: 'name'
+        },
+        label: {
+            type: 'text',
+            hook: 'label'
         }
     },
 
@@ -76,9 +102,8 @@ module.exports = View.extend({
         this.input.addEventListener('change', this.handleInputEvent, false);
 
         this.setMessage(this.message);
-        this.input.checked = !!this.value;
-        this.input.name = this.name;
-        this.labelEl.textContent = this.label;
+
+        return this;
     },
     // handle input events and show appropriate errors
     handleInputEvent: function () {
@@ -109,11 +134,13 @@ module.exports = View.extend({
         }
     },
     setValue: function (value) {
-        if (this.input) this.input.checked = !!value;
+        this.value = !!value;
+
         return this.handleInputEvent();
     },
     beforeSubmit: function () {
         this.shouldValidate = true;
+
         return this.handleInputEvent();
     },
     test: function () {
