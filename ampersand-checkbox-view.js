@@ -70,7 +70,7 @@ module.exports = View.extend({
         if (document.activeElement === this.input) this.directlyEdited = true;
         this.value = this.input ? this.input.checked : this.value;
         this.test();
-        if (this.parent) this.parent.update(this);
+        if (this.parent && this.parent.update) this.parent.update(this);
     },
     // set the error message if exists
     // hides the message container entirely otherwise
