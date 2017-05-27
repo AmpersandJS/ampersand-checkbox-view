@@ -12,17 +12,17 @@
     "url": "https://github.com/ampersandjs/ampersand-checkbox-view/issues"
   },
   "dependencies": {
-    "ampersand-dom": "^1.4.0",
+    "ampersand-dom": "^1.5.0",
     "ampersand-version": "^1.0.2",
     "ampersand-view": "^10.0.1"
   },
   "devDependencies": {
-    "ampersand-view-conventions": ">=1.1.6",
-    "jshint": "~2.8.0",
-    "phantomjs-prebuilt": "^2.1.12",
-    "precommit-hook": "~3.0.0",
-    "tape": "^4.4.0",
-    "zuul": "^3.9.0"
+    "ampersand-view-conventions": "^1.1.8",
+    "jshint": "^2.9.4",
+    "phantomjs-prebuilt": "^2.1.14",
+    "precommit-hook": "^3.0.0",
+    "tape": "^4.6.3",
+    "zuul": "^3.11.1"
   },
   "homepage": "https://github.com/ampersandjs/ampersand-checkbox-view",
   "keywords": [
