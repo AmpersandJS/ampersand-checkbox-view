@@ -26,7 +26,6 @@ module.exports = View.extend({
         this.value = this.startingValue;
         this.label = opts.label || opts.name;
         this.required = (typeof opts.required === 'boolean') ? opts.required : false;
-        this.disabled = (typeof opts.disabled === 'boolean') ? opts.disabled : false;
         this.validClass = opts.validClass || 'input-valid';
         this.invalidClass = opts.invalidClass || 'input-invalid';
         this.requiredMessage = opts.requiredMessage || 'This box must be checked.';
@@ -37,6 +36,22 @@ module.exports = View.extend({
 
         this.setValue(this.value);
     },
+
+    props: {
+        disabled: {
+            type: 'boolean',
+            default: false
+        }
+    },
+
+    bindings: {
+        disabled: {
+            type: 'booleanAttribute',
+            selector: 'input',
+            name: 'disabled'
+        }
+    },
+
     clear: function () {
         return this.setValue(false);
     },
@@ -62,7 +77,6 @@ module.exports = View.extend({
 
         this.setMessage(this.message);
         this.input.checked = !!this.value;
-        this.input.disabled = this.disabled;
         this.input.name = this.name;
         this.labelEl.textContent = this.label;
     },
